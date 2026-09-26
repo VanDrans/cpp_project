@@ -1,0 +1,8 @@
+总计 52
+-rw-rw-r-- 1 van van     0  9月 15 10:47 1.txt
+-rwxrwxr-x 1 van van 17920  9月  9 18:54 file_io
+-rw-rw-r-- 1 van van   468  9月  9 18:54 file_io.c
+-rw-rw-r-- 1 van van    15  9月  9 18:48 io.txt
+-rw-rw-r-- 1 van van    78  9月 15 10:15 Makefile
+-rwxrwxr-x 1 van van 16048  9月 15 09:56 process
+-rw-rw-r-- 1 van van   226  9月 15 09:55 process.c
