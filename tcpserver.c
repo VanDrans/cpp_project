@@ -34,6 +34,7 @@ void *read_from_client(void *arg){
 
     printf("客户端请求关闭\n");
     free(read_buf);
+    read_buf = NULL;
 
     return NULL;
     
@@ -55,6 +56,7 @@ void* write_to_client(void *arg){
 
     printf("客户端请求关闭\n");
     free(write_buf);
+    write_buf = NULL;
 
     return NULL;
 

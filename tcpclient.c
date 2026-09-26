@@ -17,7 +17,7 @@
     }
 
 
-void *read_from_client(void *arg){
+void *read_from_server(void *arg){
     char * read_buf = NULL;
     int client_fd = *(int*)arg;
     read_buf = malloc(sizeof(char)*1024);
@@ -34,11 +34,13 @@ void *read_from_client(void *arg){
 
     printf("客户端请求关闭\n");
     free(read_buf);
+    read_buf = NULL;
 
     return NULL;
     
 }
-void* write_to_client(void *arg){
+
+void* write_to_server(void *arg){
     char * write_buf = NULL;
     int client_fd = *(int*)arg;
     write_buf = malloc(sizeof(char)*1024);
@@ -55,6 +57,7 @@ void* write_to_client(void *arg){
 
     printf("客户端请求关闭\n");
     free(write_buf);
+    write_buf = NULL;
 
     return NULL;
 
@@ -67,23 +70,23 @@ int main(void)
     memset(&server_addr, 0, sizeof(server_addr));
     memset(&client_addr, 0, sizeof(client_addr));
 
-    // 填写服务器地址
+
     client_addr.sin_family = AF_INET;
-    // 填写IP地址
     inet_pton(AF_INET,"127.0.0.1",&client_addr.sin_addr);
     client_addr.sin_port = htons(8888);
 
+    server_addr.sin_family = AF_INET;
+    inet_pton(AF_INET,"127.0.0.1",&server_addr.sin_addr);
+    server_addr.sin_port = htons(6666);
 
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
     handle_error("socket", sockfd);
 
+    int temp_result =bind(sockfd, (struct sockaddr *)&server_addr, sizeof(client_addr));
 
-
-
-
-
-
-
+    temp_result = connect(sockfd, (struct sockaddr *)&server_addr, sizeof(client_addr));
+    handle_error("connect", temp_result);
+    
 
 
     /*
@@ -96,14 +99,13 @@ int main(void)
     */
     //创建子线程
     pthread_t pid_read,pid_write;
-    pthread_create(&pid_read,NULL,read_from_client,(void*)&clientfd);
-    pthread_create(&pid_write,NULL,write_to_client,(void*)&clientfd);
+    pthread_create(&pid_read,NULL,read_from_server,(void*)&sockfd);
+    pthread_create(&pid_write,NULL,write_to_server,(void*)&sockfd);
 
     pthread_join(pid_read,NULL);
     pthread_join(pid_write,NULL);
 
     printf("释放资源\n");
-    close(clientfd);
     close(sockfd);
 
     return 0;
