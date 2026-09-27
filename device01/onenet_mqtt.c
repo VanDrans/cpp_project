@@ -34,10 +34,10 @@ static long long current_millis(void)
     return (long long)ts.tv_sec * 1000LL + ts.tv_nsec / 1000000LL;
 }
 
-/* 延迟指定毫秒（替代 Python 的 time.sleep） */
+/* 延迟指定毫秒 */
 static void sleep_ms(int milliseconds)
 {
-    sleep(milliseconds * 1000);
+    usleep(milliseconds * 1000);
 }
 
 /* ==================== 连接丢失回调 ==================== */
