@@ -8,10 +8,7 @@ int main()
     char *name = "张玉豪";
     printf("name = %s pid = %d\n", name, getpid());
     pid_t pid = fork();
-    if (pid == -1) {
-        perror("fork");
-        return 1;
-    } else if (pid == 0) {
+
         
 
 
