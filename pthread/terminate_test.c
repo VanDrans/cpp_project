@@ -12,6 +12,8 @@ typedef struct
 } Result;
 void *func1(void *arg)
 {
+    Result *res = (Result *)malloc(sizeof(Result));
+    
 }
 void *func2(void *arg)
 {
