@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include "stdio.h"
 
-pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
+
 
 void *add_counter(void *arg)
 {
@@ -13,6 +13,7 @@ void *add_counter(void *arg)
 
         (*ptr)++;
     }
+    return NULL;
 }
 
 int main(int argc, char const *argv[])
