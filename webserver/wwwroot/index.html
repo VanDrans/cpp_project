@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Web</title>
+  <!-- 关键：把 favicon 内联掉，浏览器就不会再发 /favicon.ico 请求，
+       你服务器日志里就只剩一个连接了 -->
+  <link rel="icon" href="data:,">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      color: #e2e8f0;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 48px 56px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+    p { color: #94a3b8; font-size: 1rem; line-height: 1.6; }
+    .time { margin-top: 24px; font-size: 0.9rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Hello Web</h1>
+    <p>这个页面由你手写的 C 多线程服务器返回</p>
+    <div class="time" id="time"></div>
+  </div>
+
+  <script>
+    // 纯前端小交互，证明 JS 也正常
+    document.getElementById('time').textContent =
+      '页面加载于 ' + new Date().toLocaleString('zh-CN');
+  </script>
+</body>
+</html>
